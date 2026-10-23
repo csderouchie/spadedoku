@@ -1,0 +1,7 @@
+@abstract
+class_name Card extends Node
+@onready var label = $Label
+@export var value : int
+
+func set_display(value : String):
+	label.text = value

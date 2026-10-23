@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://d10wij3p6q6w3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fp5sn"]
+
+[node name="UiWhiteBox" type="Node2D" unique_id=1048866995]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1932104899]
+scale = Vector2(100, 100)
+mesh = SubResource("BoxMesh_fp5sn")

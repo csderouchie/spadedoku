@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b6jmq24fp0xgp"]
+
+[ext_resource type="Script" uid="uid://dpt7rdlctugcn" path="res://Scripts/card_10.gd" id="1_davvb"]
+[ext_resource type="PackedScene" uid="uid://d10wij3p6q6w3" path="res://Scenes/UI/UI_white_box.tscn" id="2_xvu2i"]
+
+[node name="Card10" type="Node2D" unique_id=1952870591]
+script = ExtResource("1_davvb")
+
+[node name="UiWhiteBox" parent="." unique_id=1048866995 instance=ExtResource("2_xvu2i")]
+
+[node name="Label" type="Label" parent="." unique_id=1558093100]
+offset_left = -80.0
+offset_top = -45.0
+offset_right = -40.0
+offset_bottom = -22.0
+scale = Vector2(4, 4)
+theme_override_colors/font_color = Color(0.012617188, 0.012617188, 0.012617188, 1)
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
