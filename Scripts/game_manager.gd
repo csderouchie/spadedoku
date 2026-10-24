@@ -23,10 +23,7 @@ func process_select(tile_pos : Vector2i): # Card selection and movement logic
 		if selection != Vector2i(-10,-10) and card_layer.get_cell_source_id(tile_pos) == -1:
 			var alt_tile : int
 			var selected_tile = card_layer.get_cell_source_id(selection)
-			if selected_tile == 2: # Work around alt tile bug
-				alt_tile = 2
-			else:
-				alt_tile = 1
+			alt_tile = get_alt_tile(selected_tile)
 				# Move selected tile
 			card_layer.erase_cell(selection)
 			card_layer.set_cell(tile_pos, selected_tile, Vector2i.ZERO, alt_tile)
@@ -40,7 +37,7 @@ func process_select(tile_pos : Vector2i): # Card selection and movement logic
 func get_level_data(level_num : int):
 	return Level.levels[str(level_num)]
 
-func load_level(level_num : int):
+func load_level(level_num : int): # Load full level from its number
 	var level = get_level_data(level_num)
 	board_coords = []
 	for i in len(base_board_coords): # Load board
@@ -51,16 +48,19 @@ func load_level(level_num : int):
 			background.set_cell(base_board_coords[i], 0, Vector2i.ZERO, 1)
 	var alt_tile : int
 	for i in range(len(level["hand"])): # Load hand
-		if level["hand"][i] == 2: # alt tile bug
-			alt_tile = 2
-		else:
-			alt_tile = 1
+		alt_tile = get_alt_tile(level["hand"][i])
 		card_layer.set_cell(hand_coords[i], level["hand"][i], Vector2i.ZERO, alt_tile)
 	for i in range(len(level["board_cards"])): # Load board cards
 		var board_card = level["board_cards"][i]
 		var coords := Vector2i(board_card["x"], board_card["y"])
-		card_layer.set_cell(coords, board_card["card"], Vector2i.ZERO, 1)
-		
+		alt_tile = get_alt_tile(board_card["card"])
+		card_layer.set_cell(coords, board_card["card"], Vector2i.ZERO, alt_tile)
+
+func get_alt_tile(num : int) -> int: # Work around for alt tile bug
+		if num == 2:
+			return 2
+		else:
+			return 1
 
 # Active game tiles array builders
 func _get_hand_coords() -> Array:
