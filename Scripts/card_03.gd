@@ -1,5 +1,5 @@
 extends Card
 
 func _ready():
-	value = 4
+	value = 3
 	set_display(str(value))

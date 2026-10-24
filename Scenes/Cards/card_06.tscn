@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d10wij3p6q6w3" path="res://Scenes/UI/UI_white_box.tscn" id="2_ygwf3"]
 
 [node name="Card06" type="Node2D" unique_id=1952870591]
+scale = Vector2(0.8, 0.8)
 script = ExtResource("1_lwds2")
 
 [node name="UiWhiteBox" parent="." unique_id=1048866995 instance=ExtResource("2_ygwf3")]

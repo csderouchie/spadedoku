@@ -1,7 +1,18 @@
 [gd_scene format=4 uid="uid://cuhe4hwpltfqf"]
 
+[ext_resource type="Script" uid="uid://fnft2dbfk4l3" path="res://Scripts/game_manager.gd" id="1_3so38"]
 [ext_resource type="PackedScene" uid="uid://d10wij3p6q6w3" path="res://Scenes/UI/UI_white_box.tscn" id="1_gl6un"]
+[ext_resource type="PackedScene" uid="uid://iiiy0dd0t1ng" path="res://Scenes/Cards/card_02.tscn" id="1_iukft"]
+[ext_resource type="PackedScene" uid="uid://dtctxlm7xn1md" path="res://Scenes/Cards/card_03.tscn" id="2_gl6un"]
 [ext_resource type="PackedScene" uid="uid://dnldndwsaadpm" path="res://Scenes/UI/UI_white_box_outlined.tscn" id="2_j5yw3"]
+[ext_resource type="PackedScene" uid="uid://yeurnunrpb83" path="res://Scenes/Cards/card_04.tscn" id="3_bf53h"]
+[ext_resource type="PackedScene" uid="uid://gpw8oudpvwt5" path="res://Scenes/Cards/card_05.tscn" id="4_71axn"]
+[ext_resource type="PackedScene" uid="uid://dto6ish2vy8bf" path="res://Scenes/Cards/card_06.tscn" id="5_dahhg"]
+[ext_resource type="PackedScene" uid="uid://bfwnymyi5nqqe" path="res://Scenes/Cards/card_07.tscn" id="6_3so38"]
+[ext_resource type="PackedScene" uid="uid://b8vjoytt667v7" path="res://Scenes/Cards/card_08.tscn" id="7_3cx6b"]
+[ext_resource type="PackedScene" uid="uid://cylsh2wy0jt04" path="res://Scenes/Cards/card_09.tscn" id="8_wxwew"]
+[ext_resource type="PackedScene" uid="uid://b6jmq24fp0xgp" path="res://Scenes/Cards/card_10.tscn" id="9_acvyw"]
+[ext_resource type="PackedScene" uid="uid://cdqcbtaxyiysl" path="res://Scenes/UI/UI_highlight.tscn" id="13_3cx6b"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_kldst"]
 resource_name = "white"
@@ -16,11 +27,82 @@ tile_size = Vector2i(100, 100)
 sources/0 = SubResource("TileSetScenesCollectionSource_kldst")
 sources/1 = SubResource("TileSetScenesCollectionSource_b2bpf")
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_dahhg"]
+resource_name = "void"
+scenes/1/scene = ExtResource("1_gl6un")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_3so38"]
+resource_name = "card_10"
+scenes/1/scene = ExtResource("9_acvyw")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_3cx6b"]
+resource_name = "card_2"
+scenes/2/scene = ExtResource("1_iukft")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_wxwew"]
+resource_name = "card_3"
+scenes/1/scene = ExtResource("2_gl6un")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_acvyw"]
+resource_name = "card_4"
+scenes/1/scene = ExtResource("3_bf53h")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_alh3a"]
+resource_name = "card_5"
+scenes/1/scene = ExtResource("4_71axn")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_4q8tf"]
+resource_name = "card_6"
+scenes/1/scene = ExtResource("5_dahhg")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_x3xnh"]
+resource_name = "card_7"
+scenes/1/scene = ExtResource("6_3so38")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_8r6kd"]
+resource_name = "card_8"
+scenes/1/scene = ExtResource("7_3cx6b")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_tfod6"]
+resource_name = "card_9"
+scenes/1/scene = ExtResource("8_wxwew")
+
+[sub_resource type="TileSet" id="TileSet_rajel"]
+tile_size = Vector2i(100, 100)
+sources/2 = SubResource("TileSetScenesCollectionSource_3cx6b")
+sources/0 = SubResource("TileSetScenesCollectionSource_dahhg")
+sources/3 = SubResource("TileSetScenesCollectionSource_wxwew")
+sources/4 = SubResource("TileSetScenesCollectionSource_acvyw")
+sources/5 = SubResource("TileSetScenesCollectionSource_alh3a")
+sources/6 = SubResource("TileSetScenesCollectionSource_4q8tf")
+sources/7 = SubResource("TileSetScenesCollectionSource_x3xnh")
+sources/8 = SubResource("TileSetScenesCollectionSource_8r6kd")
+sources/9 = SubResource("TileSetScenesCollectionSource_tfod6")
+sources/10 = SubResource("TileSetScenesCollectionSource_3so38")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_rajel"]
+scenes/1/scene = ExtResource("13_3cx6b")
+
+[sub_resource type="TileSet" id="TileSet_3so38"]
+tile_size = Vector2i(100, 100)
+sources/0 = SubResource("TileSetScenesCollectionSource_rajel")
+
 [node name="Game" type="Node2D" unique_id=1789388373]
 
-[node name="Background" type="TileMapLayer" parent="." unique_id=2029033724]
+[node name="GameManager" type="Node2D" parent="." unique_id=1409472639]
+script = ExtResource("1_3so38")
+
+[node name="Background" type="TileMapLayer" parent="GameManager" unique_id=2029033724]
 tile_map_data = PackedByteArray("AAD9//r/AAAAAAAAAQD+//r/AAAAAAAAAQD///r/AAAAAAAAAQAAAPr/AAAAAAAAAQABAPr/AAAAAAAAAQACAPr/AAAAAAAAAQD9//v/AAAAAAAAAQD9//z/AAAAAAAAAQD9//3/AAAAAAAAAQD9//7/AAAAAAAAAQD9////AAAAAAAAAQD9/wAAAAAAAAAAAQD9/wEAAAAAAAAAAQD9/wIAAAAAAAAAAQD9/wMAAAAAAAAAAQD9/wQAAAAAAAAAAQD9/wUAAAAAAAAAAQD+/wUAAAAAAAAAAQD//wUAAAAAAAAAAQAAAAUAAAAAAAAAAQABAAUAAAAAAAAAAQACAAUAAAAAAAAAAQACAAIAAQAAAAAAAQACAAEAAAAAAAAAAQACAAAAAAAAAAAAAQACAP//AQAAAAAAAQACAP7/AQAAAAAAAQACAP3/AQAAAAAAAQACAPz/AQAAAAAAAQACAPv/AAAAAAAAAQADAPr/AAAAAAAAAQADAPv/AAAAAAAAAQADAPz/AAAAAAAAAQADAP3/AAAAAAAAAQADAP7/AAAAAAAAAQADAP//AAAAAAAAAQADAAAAAAAAAAAAAQADAAQAAAAAAAAAAQADAAMAAAAAAAAAAQADAAIAAAAAAAAAAQADAAEAAAAAAAAAAQADAAUAAAAAAAAAAQD+//v/AAAAAAAAAQD///v/AAAAAAAAAQAAAPv/AAAAAAAAAQABAPv/AAAAAAAAAQABAPz/AQAAAAAAAQAAAPz/AQAAAAAAAQD///z/AQAAAAAAAQD+//z/AQAAAAAAAQD+//3/AQAAAAAAAQD///3/AQAAAAAAAQAAAP3/AQAAAAAAAQABAP3/AQAAAAAAAQABAP7/AQAAAAAAAQAAAP7/AQAAAAAAAQD+//7/AQAAAAAAAQD///7/AQAAAAAAAQD+////AQAAAAAAAQD/////AQAAAAAAAQAAAP//AQAAAAAAAQABAP//AQAAAAAAAQABAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQD//wAAAAAAAAAAAQD+/wAAAAAAAAAAAQD+/wEAAAAAAAAAAQD//wEAAAAAAAAAAQAAAAEAAAAAAAAAAQABAAEAAAAAAAAAAQABAAIAAQAAAAAAAQAAAAIAAQAAAAAAAQD//wIAAQAAAAAAAQD+/wIAAQAAAAAAAQAEAAUAAAAAAAAAAQAEAAQAAAAAAAAAAQAEAAMAAAAAAAAAAQAEAAIAAAAAAAAAAQAEAAEAAAAAAAAAAQAEAAAAAAAAAAAAAQAEAP//AAAAAAAAAQAEAP7/AAAAAAAAAQAEAP3/AAAAAAAAAQAEAPz/AAAAAAAAAQAEAPv/AAAAAAAAAQAEAPr/AAAAAAAAAQD8//r/AAAAAAAAAQD8//v/AAAAAAAAAQD8//z/AAAAAAAAAQD8//3/AAAAAAAAAQD8//7/AAAAAAAAAQD8/wAAAAAAAAAAAQD8////AAAAAAAAAQD8/wEAAAAAAAAAAQD8/wIAAAAAAAAAAQD8/wMAAAAAAAAAAQD8/wQAAAAAAAAAAQD8/wUAAAAAAAAAAQD8//n/AAAAAAAAAQD9//n/AAAAAAAAAQD+//n/AAAAAAAAAQD///n/AAAAAAAAAQAAAPn/AAAAAAAAAQABAPn/AAAAAAAAAQACAPn/AAAAAAAAAQADAPn/AAAAAAAAAQAEAPn/AAAAAAAAAQD+/wMAAQAAAAAAAQD//wMAAQAAAAAAAQAAAAMAAQAAAAAAAQABAAMAAQAAAAAAAQACAAMAAQAAAAAAAQACAAQAAAAAAAAAAQABAAQAAAAAAAAAAQAAAAQAAAAAAAAAAQD//wQAAAAAAAAAAQD+/wQAAAAAAAAAAQA=")
 tile_set = SubResource("TileSet_cg2ps")
+
+[node name="CardLayer" type="TileMapLayer" parent="GameManager" unique_id=149777064]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAABAAIABQAAAAAAAQACAAIABgAAAAAAAQD+/wMABwAAAAAAAQD//wMACAAAAAAAAQAAAAMACQAAAAAAAQABAAMACgAAAAAAAQD//wIAAwAAAAAAAQAAAAIABAAAAAAAAQD+/wIAAgAAAAAAAgA=")
+tile_set = SubResource("TileSet_rajel")
+
+[node name="Highlight" type="TileMapLayer" parent="GameManager" unique_id=495748860]
+tile_set = SubResource("TileSet_3so38")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1714772714]
 position = Vector2(50, -50)
