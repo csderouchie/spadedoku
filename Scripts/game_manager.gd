@@ -8,6 +8,7 @@ var board_coords : Array
 
 func _ready():
 	board_coords = _get_board_coords()
+	print(get_level_data(0))
 
 func _input(event: InputEvent) -> void:
 	var tile_pos = card_layer.local_to_map(get_global_mouse_position())
@@ -33,6 +34,9 @@ func process_select(tile_pos : Vector2i): # Card selection and movement logic
 			highlight.set_cell(selection, 0, Vector2i.ZERO, 1)
 	else:
 		selection = Vector2i(0,0)
+
+func get_level_data(level_num : int):
+	return Level.levels[str(level_num)]
 
 # Active game tiles array builders
 func _get_hand_coords() -> Array:

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cylsh2wy0jt04"]
 
-[ext_resource type="Script" uid="uid://dof2juje5bsos" path="res://Scripts/card_09.gd" id="1_045bx"]
+[ext_resource type="Script" uid="uid://dof2juje5bsos" path="res://Scripts/Cards/card_09.gd" id="1_045bx"]
 [ext_resource type="PackedScene" uid="uid://d10wij3p6q6w3" path="res://Scenes/UI/UI_white_box.tscn" id="2_nprr1"]
 
 [node name="Card09" type="Node2D" unique_id=1952870591]
