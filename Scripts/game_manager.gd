@@ -9,30 +9,39 @@ var board_coords : Array
 
 func _ready():
 	base_board_coords = _get_board_coords()
-	board_coords = base_board_coords
 	load_level(0)
 
 func _input(event: InputEvent) -> void:
 	var tile_pos = card_layer.local_to_map(get_global_mouse_position())
 	if event.is_action_pressed("Select"):
-		process_select(tile_pos)
+		process_select_click(tile_pos)
+	elif event.is_action_released("Select"):
+		process_select_release(tile_pos)
 		
-func process_select(tile_pos : Vector2i): # Card selection and movement logic
+func process_select_click(tile_pos : Vector2i): # Card selection and movement logic
 	highlight.clear()
 	if tile_pos in hand_coords or tile_pos in board_coords:
 		if selection != Vector2i(-10,-10) and card_layer.get_cell_source_id(tile_pos) == -1:
-			var alt_tile : int
-			var selected_tile = card_layer.get_cell_source_id(selection)
-			alt_tile = get_alt_tile(selected_tile)
-				# Move selected tile
-			card_layer.erase_cell(selection)
-			card_layer.set_cell(tile_pos, selected_tile, Vector2i.ZERO, alt_tile)
-			selection = Vector2i(0,0)
-		else:
+			place_card(tile_pos)
+		elif card_layer.get_cell_source_id(tile_pos) != -1:
 			selection = tile_pos
 			highlight.set_cell(selection, 0, Vector2i.ZERO, 1)
 	else:
-		selection = Vector2i(0,0)
+		selection = Vector2i(-10,-10)
+
+func process_select_release(tile_pos):
+	if tile_pos in hand_coords or tile_pos in board_coords and tile_pos != selection:
+		if selection != Vector2i(-10,-10) and card_layer.get_cell_source_id(tile_pos) == -1:
+			place_card(tile_pos)
+			highlight.clear()
+
+func place_card(tile_pos : Vector2):
+		var selected_tile = card_layer.get_cell_source_id(selection)
+		var alt_tile = get_alt_tile(selected_tile)
+		# Move selected tile
+		card_layer.erase_cell(selection)
+		card_layer.set_cell(tile_pos, selected_tile, Vector2i.ZERO, alt_tile)
+		selection = Vector2i(-10,-10)
 
 func get_level_data(level_num : int):
 	return Level.levels[str(level_num)]
@@ -74,6 +83,5 @@ func _get_board_coords() -> Array:
 	var coords = []
 	for x in range(-2, 3):
 		for y in range(-4, 1):
-			if background.get_cell_source_id(Vector2i(x, y)) == 2:
-				coords.append(Vector2i(x, y))
+			coords.append(Vector2i(x, y))
 	return coords
