@@ -8,29 +8,36 @@
 [ext_resource type="PackedScene" uid="uid://yeurnunrpb83" path="res://Scenes/Cards/card_04.tscn" id="3_bf53h"]
 [ext_resource type="PackedScene" uid="uid://gpw8oudpvwt5" path="res://Scenes/Cards/card_05.tscn" id="4_71axn"]
 [ext_resource type="PackedScene" uid="uid://dto6ish2vy8bf" path="res://Scenes/Cards/card_06.tscn" id="5_dahhg"]
+[ext_resource type="PackedScene" uid="uid://ctoy4f48ipv1t" path="res://Scenes/UI/UI_gray_box_outlined.tscn" id="5_wxwew"]
 [ext_resource type="PackedScene" uid="uid://bfwnymyi5nqqe" path="res://Scenes/Cards/card_07.tscn" id="6_3so38"]
 [ext_resource type="PackedScene" uid="uid://b8vjoytt667v7" path="res://Scenes/Cards/card_08.tscn" id="7_3cx6b"]
 [ext_resource type="PackedScene" uid="uid://cylsh2wy0jt04" path="res://Scenes/Cards/card_09.tscn" id="8_wxwew"]
 [ext_resource type="PackedScene" uid="uid://b6jmq24fp0xgp" path="res://Scenes/Cards/card_10.tscn" id="9_acvyw"]
 [ext_resource type="PackedScene" uid="uid://cdqcbtaxyiysl" path="res://Scenes/UI/UI_highlight.tscn" id="13_3cx6b"]
+[ext_resource type="PackedScene" uid="uid://cqg7wqovcit2s" path="res://Scenes/UI/UI_highlight_red.tscn" id="15_acvyw"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_kldst"]
 resource_name = "white"
 scenes/1/scene = ExtResource("1_gl6un")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_b2bpf"]
-resource_name = "box"
+resource_name = "box_white"
 scenes/1/scene = ExtResource("2_j5yw3")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_vvhu1"]
 resource_name = "debug"
 scenes/1/scene = ExtResource("13_3cx6b")
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_lbihj"]
+resource_name = "box_gray"
+scenes/1/scene = ExtResource("5_wxwew")
+
 [sub_resource type="TileSet" id="TileSet_cg2ps"]
 tile_size = Vector2i(100, 100)
 sources/0 = SubResource("TileSetScenesCollectionSource_kldst")
 sources/1 = SubResource("TileSetScenesCollectionSource_b2bpf")
 sources/2 = SubResource("TileSetScenesCollectionSource_vvhu1")
+sources/3 = SubResource("TileSetScenesCollectionSource_lbihj")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_dahhg"]
 resource_name = "void"
@@ -88,9 +95,14 @@ sources/10 = SubResource("TileSetScenesCollectionSource_3so38")
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_rajel"]
 scenes/1/scene = ExtResource("13_3cx6b")
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_raj38"]
+resource_name = "highlight_red"
+scenes/1/scene = ExtResource("15_acvyw")
+
 [sub_resource type="TileSet" id="TileSet_3so38"]
 tile_size = Vector2i(100, 100)
 sources/0 = SubResource("TileSetScenesCollectionSource_rajel")
+sources/1 = SubResource("TileSetScenesCollectionSource_raj38")
 
 [node name="Game" type="Node2D" unique_id=1789388373]
 

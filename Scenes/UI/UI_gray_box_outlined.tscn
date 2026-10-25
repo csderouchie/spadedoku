@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ctoy4f48ipv1t"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_fp5sn"]
+
+[node name="UiGrayBox" type="Node2D" unique_id=1048866995]
+
+[node name="Black" type="MeshInstance2D" parent="." unique_id=959586194]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(100, 100)
+mesh = SubResource("QuadMesh_fp5sn")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=13427344]
+offset_left = -45.0
+offset_top = -45.0
+offset_right = 45.0
+offset_bottom = 45.0
+color = Color(0.4911909, 0.49119097, 0.4911908, 1)

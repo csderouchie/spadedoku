@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cqg7wqovcit2s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fp5sn"]
+
+[node name="UiWhiteBox" type="Node2D" unique_id=1048866995]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1932104899]
+modulate = Color(0.8235294, 0.015686275, 0.1764706, 0.47058824)
+scale = Vector2(90, 90)
+mesh = SubResource("BoxMesh_fp5sn")

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://pwf4vgxjvat6"]
+
+[node name="UiWhiteBox" type="Node2D" unique_id=1048866995]
+
+[node name="MeshInstance2D" type="ColorRect" parent="." unique_id=1135876802]
+offset_left = -50.0
+offset_top = -50.0
+offset_right = -49.0
+offset_bottom = -49.0
+scale = Vector2(100, 100)
+color = Color(0.42357814, 0.42357814, 0.41824132, 1)
