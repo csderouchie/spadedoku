@@ -91,7 +91,6 @@ func set_gray_tiles():
 		background.set_cell(board_card_coords[i], 3, Vector2i.ZERO, 1)
 		var card_background = get_card_at(board_card_coords[i])
 		card_background.remove_child(card_background.get_child(0))
-	
 
 # Active game tiles array builders
 func _get_hand_coords() -> Array:
