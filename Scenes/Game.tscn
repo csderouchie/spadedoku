@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://b6jmq24fp0xgp" path="res://Scenes/Cards/card_10.tscn" id="9_acvyw"]
 [ext_resource type="PackedScene" uid="uid://cdqcbtaxyiysl" path="res://Scenes/UI/UI_highlight.tscn" id="13_3cx6b"]
 [ext_resource type="PackedScene" uid="uid://cqg7wqovcit2s" path="res://Scenes/UI/UI_highlight_red.tscn" id="15_acvyw"]
+[ext_resource type="PackedScene" uid="uid://bxs6l8pndpyph" path="res://Scenes/UI/UI_indicator_tile.tscn" id="16_alh3a"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_kldst"]
 resource_name = "white"
@@ -104,6 +105,14 @@ tile_size = Vector2i(100, 100)
 sources/0 = SubResource("TileSetScenesCollectionSource_rajel")
 sources/1 = SubResource("TileSetScenesCollectionSource_raj38")
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_8e0uq"]
+resource_name = "indicator"
+scenes/1/scene = ExtResource("16_alh3a")
+
+[sub_resource type="TileSet" id="TileSet_i0vto"]
+tile_size = Vector2i(100, 100)
+sources/0 = SubResource("TileSetScenesCollectionSource_8e0uq")
+
 [node name="Game" type="Node2D" unique_id=1789388373]
 
 [node name="GameManager" type="Node2D" parent="." unique_id=1409472639]
@@ -121,6 +130,7 @@ tile_set = SubResource("TileSet_rajel")
 tile_set = SubResource("TileSet_3so38")
 
 [node name="Indicator" type="TileMapLayer" parent="GameManager" unique_id=1385529821]
+tile_set = SubResource("TileSet_i0vto")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1714772714]
 position = Vector2(50, -50)

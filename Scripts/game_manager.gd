@@ -2,6 +2,7 @@ extends Node2D
 @onready var card_layer: TileMapLayer = $CardLayer
 @onready var highlight: TileMapLayer = $Highlight
 @onready var background: TileMapLayer = $Background
+@onready var indicator_layer: TileMapLayer = $Indicator
 @onready var selection: Vector2i = Vector2i(-10, -10)
 var hand_coords = _get_hand_coords()
 var base_board_coords : Array
@@ -20,7 +21,7 @@ func _input(event: InputEvent) -> void:
 		process_select_release(tile_pos)
 		
 func process_select_click(tile_pos : Vector2i): # Card selection and movement logic
-	# debug print(tile_pos) 
+	print(tile_pos) # debug 
 	highlight.clear()
 	if tile_pos in hand_coords or tile_pos in board_coords:
 		if tile_pos not in board_card_coords:
@@ -80,6 +81,7 @@ func load_level(level_num : int): # Load full level from its number
 		card_layer.set_cell(coords, board_card["card"], Vector2i.ZERO, alt_tile)
 	card_layer.update_internals()
 	set_gray_tiles()
+	place_indicator_tiles(board_coords)
 
 func get_alt_tile(num : int) -> int: # Work around for alt tile bug
 		if num == 2:
@@ -92,6 +94,20 @@ func set_gray_tiles():
 		background.set_cell(board_card_coords[i], 3, Vector2i.ZERO, 1)
 		var card_background = get_card_at(board_card_coords[i])
 		card_background.remove_child(card_background.get_child(0))
+
+func place_indicator_tiles(board_coords : Array):
+	var prev_coords := Vector2i(-99, -99)
+	var last_coord = board_coords[len(board_coords) - 1]
+	for coord in board_coords:
+		if prev_coords.x == -99:
+			pass
+		elif coord == last_coord:
+			indicator_layer.set_cell(Vector2i(coord.x, coord.y + 1), 0, Vector2i.ZERO, 1)
+		elif prev_coords.x != coord.x:
+			indicator_layer.set_cell(Vector2i(prev_coords.x, prev_coords.y + 1), 0, Vector2i.ZERO, 1)
+		if coord.x == last_coord.x:
+			indicator_layer.set_cell(Vector2i(coord.x + 1, coord.y), 0, Vector2i.ZERO, 1)
+		prev_coords = coord
 
 # Active game tiles array builders
 func _get_hand_coords() -> Array:
