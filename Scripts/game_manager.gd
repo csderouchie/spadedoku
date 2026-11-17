@@ -20,6 +20,7 @@ func _input(event: InputEvent) -> void:
 		process_select_release(tile_pos)
 		
 func process_select_click(tile_pos : Vector2i): # Card selection and movement logic
+	# debug print(tile_pos) 
 	highlight.clear()
 	if tile_pos in hand_coords or tile_pos in board_coords:
 		if tile_pos not in board_card_coords:
@@ -103,6 +104,6 @@ func _get_hand_coords() -> Array:
 func _get_board_coords() -> Array:
 	var coords = []
 	for x in range(-2, 3):
-		for y in range(-4, 1):
+		for y in range(-5, 0):
 			coords.append(Vector2i(x, y))
 	return coords
