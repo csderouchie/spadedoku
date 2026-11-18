@@ -55,6 +55,7 @@ func place_card(tile_pos : Vector2):
 		# Move selected tile
 		card_layer.erase_cell(selection)
 		card_layer.set_cell(tile_pos, selected_tile, Vector2i.ZERO, alt_tile)
+		update_indicator_tiles()
 		selection = Vector2i(-10,-10)
 
 func get_level_data(level_num : int):
@@ -81,7 +82,8 @@ func load_level(level_num : int): # Load full level from its number
 		card_layer.set_cell(coords, board_card["card"], Vector2i.ZERO, alt_tile)
 	card_layer.update_internals()
 	set_gray_tiles()
-	place_indicator_tiles(board_coords)
+	place_indicator_tiles()
+	update_indicator_tiles()
 
 func get_alt_tile(num : int) -> int: # Work around for alt tile bug
 		if num == 2:
@@ -95,7 +97,7 @@ func set_gray_tiles():
 		var card_background = get_card_at(board_card_coords[i])
 		card_background.remove_child(card_background.get_child(0))
 
-func place_indicator_tiles(board_coords : Array):
+func place_indicator_tiles():
 	var prev_coords := Vector2i(-99, -99)
 	var last_coord = board_coords[len(board_coords) - 1]
 	for coord in board_coords:
@@ -108,6 +110,32 @@ func place_indicator_tiles(board_coords : Array):
 		if coord.x == last_coord.x:
 			indicator_layer.set_cell(Vector2i(coord.x + 1, coord.y), 0, Vector2i.ZERO, 1)
 		prev_coords = coord
+	set_indicator_watched_tiles()
+
+func set_indicator_watched_tiles():
+	indicator_layer.update_internals()
+	for indicator in indicator_layer.get_children():
+		var indicator_pos = indicator_layer.local_to_map(indicator.global_position)
+		for tile in board_coords:
+			if tile.x == indicator_pos.x || tile.y == indicator_pos.y:
+				indicator.watched_tiles.append(tile)
+
+func update_indicator_tiles():
+	await get_tree().create_timer(0.01).timeout
+	for indicator in indicator_layer.get_children():
+		indicator.display_value = sum_watched_tiles(indicator.watched_tiles)
+		indicator.update_display()
+	
+func sum_watched_tiles(watched_tiles : Array) -> int:
+	card_layer.update_internals()
+	var sum := 0
+	for tile in watched_tiles:
+		var card = get_card_at(tile)
+		if card != null:
+			print("card at: ", tile)
+			sum += card.value
+	return sum
+	
 
 # Active game tiles array builders
 func _get_hand_coords() -> Array:
