@@ -12,7 +12,6 @@ signal game_won
 
 func _ready():
 	base_board_coords = _get_board_coords()
-	load_level(0)
 
 func _input(event: InputEvent) -> void:
 	var tile_pos = card_layer.local_to_map(get_global_mouse_position())
@@ -98,8 +97,6 @@ func get_alt_tile(num : int) -> int: # Work around for alt tile bug
 func set_gray_tiles():
 	for i in range(len(board_card_coords)):
 		background.set_cell(board_card_coords[i], 3, Vector2i.ZERO, 1)
-		var card_background = get_card_at(board_card_coords[i])
-		card_background.remove_child(card_background.get_child(0))
 
 func place_indicator_tiles():
 	var prev_coords := Vector2i(-99, -99)
@@ -146,7 +143,16 @@ func check_game_won():
 			continue
 		else:
 			return
+	resolve_game_won()
+
+func resolve_game_won():
 	game_won.emit()
+	reset_board()
+
+func reset_board():
+	card_layer.clear()
+	indicator_layer.clear()
+	board_card_coords = []
 
 # Active game tiles array builders
 func _get_hand_coords() -> Array:

@@ -8,6 +8,7 @@ scale = Vector2(0.8, 0.8)
 script = ExtResource("1_564ax")
 
 [node name="UiWhiteBox" parent="." unique_id=1048866995 instance=ExtResource("2_hvnol")]
+visible = false
 
 [node name="Label" type="Label" parent="." unique_id=1558093100]
 offset_left = -80.0

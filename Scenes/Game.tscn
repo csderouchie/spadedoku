@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cqg7wqovcit2s" path="res://Scenes/UI/UI_highlight_red.tscn" id="15_acvyw"]
 [ext_resource type="PackedScene" uid="uid://bxs6l8pndpyph" path="res://Scenes/UI/UI_indicator_tile.tscn" id="16_alh3a"]
 [ext_resource type="PackedScene" uid="uid://cxgywyj0yg4me" path="res://Scenes/Menus/game_summary.tscn" id="18_x3xnh"]
+[ext_resource type="PackedScene" uid="uid://bwrakdffg7twp" path="res://Scenes/Menus/main_menu.tscn" id="19_8r6kd"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_kldst"]
 resource_name = "white"
@@ -142,9 +143,16 @@ position = Vector2(50, -50)
 
 [node name="GameSummary" parent="Menus" unique_id=1758692692 instance=ExtResource("18_x3xnh")]
 visible = false
-offset_left = -300.0
-offset_top = -680.0
-offset_right = -300.0
-offset_bottom = -680.0
+offset_left = -310.0
+offset_top = -690.0
+offset_right = -310.0
+offset_bottom = -690.0
+
+[node name="MainMenu" parent="Menus" unique_id=529914588 instance=ExtResource("19_8r6kd")]
+offset_left = -310.0
+offset_top = -690.0
+offset_right = -310.0
+offset_bottom = -690.0
 
 [connection signal="game_won" from="GameManager" to="." method="_on_game_manager_game_won"]
+[connection signal="play_pressed" from="Menus/MainMenu" to="." method="_on_main_menu_play_pressed"]

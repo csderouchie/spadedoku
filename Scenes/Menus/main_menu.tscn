@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://bwrakdffg7twp"]
+
+[ext_resource type="Script" uid="uid://dokfwpar7kvl6" path="res://Scripts/Menus/main_menu.gd" id="1_38aua"]
+
+[sub_resource type="Theme" id="Theme_qolup"]
+
+[node name="GameSummary" type="Control" unique_id=1758692692]
+custom_minimum_size = Vector2(720, 1280)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_38aua")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1061897268]
+custom_minimum_size = Vector2(720, 1280)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=2056260909]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_right = 200.0
+offset_bottom = 320.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/VBoxContainer" unique_id=272666060]
+custom_minimum_size = Vector2(320, 320)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/MarginContainer" unique_id=804619421]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "Spadedoku"
+horizontal_alignment = 1
+
+[node name="Play" type="Button" parent="ColorRect/VBoxContainer" unique_id=349080822]
+custom_minimum_size = Vector2(100, 125)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "Play"
+
+[node name="Level text" type="Label" parent="ColorRect/VBoxContainer/Play" unique_id=468395501]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -23.0
+offset_right = 27.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_font_sizes/font_size = 24
+text = "Level 0"
+
+[node name="Select Level" type="Button" parent="ColorRect/VBoxContainer" unique_id=1143003044]
+custom_minimum_size = Vector2(100, 75)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Select Level"
+
+[node name="Settings" type="Button" parent="ColorRect/VBoxContainer" unique_id=1379110719]
+custom_minimum_size = Vector2(100, 75)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Select Level" to="." method="_on_select_level_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
