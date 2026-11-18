@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://cuhe4hwpltfqf"]
 
 [ext_resource type="Script" uid="uid://fnft2dbfk4l3" path="res://Scripts/game_manager.gd" id="1_3so38"]
+[ext_resource type="Script" uid="uid://d0aoqggs4ybrq" path="res://Scripts/game.gd" id="1_4q8tf"]
 [ext_resource type="PackedScene" uid="uid://d10wij3p6q6w3" path="res://Scenes/UI/UI_white_box.tscn" id="1_gl6un"]
 [ext_resource type="PackedScene" uid="uid://iiiy0dd0t1ng" path="res://Scenes/Cards/card_02.tscn" id="1_iukft"]
 [ext_resource type="PackedScene" uid="uid://dtctxlm7xn1md" path="res://Scenes/Cards/card_03.tscn" id="2_gl6un"]
@@ -16,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://cdqcbtaxyiysl" path="res://Scenes/UI/UI_highlight.tscn" id="13_3cx6b"]
 [ext_resource type="PackedScene" uid="uid://cqg7wqovcit2s" path="res://Scenes/UI/UI_highlight_red.tscn" id="15_acvyw"]
 [ext_resource type="PackedScene" uid="uid://bxs6l8pndpyph" path="res://Scenes/UI/UI_indicator_tile.tscn" id="16_alh3a"]
+[ext_resource type="PackedScene" uid="uid://cxgywyj0yg4me" path="res://Scenes/Menus/game_summary.tscn" id="18_x3xnh"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_kldst"]
 resource_name = "white"
@@ -114,6 +116,7 @@ tile_size = Vector2i(100, 100)
 sources/0 = SubResource("TileSetScenesCollectionSource_8e0uq")
 
 [node name="Game" type="Node2D" unique_id=1789388373]
+script = ExtResource("1_4q8tf")
 
 [node name="GameManager" type="Node2D" parent="." unique_id=1409472639]
 script = ExtResource("1_3so38")
@@ -134,3 +137,14 @@ tile_set = SubResource("TileSet_i0vto")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1714772714]
 position = Vector2(50, -50)
+
+[node name="Menus" type="Node" parent="." unique_id=913469491]
+
+[node name="GameSummary" parent="Menus" unique_id=1758692692 instance=ExtResource("18_x3xnh")]
+visible = false
+offset_left = -300.0
+offset_top = -680.0
+offset_right = -300.0
+offset_bottom = -680.0
+
+[connection signal="game_won" from="GameManager" to="." method="_on_game_manager_game_won"]

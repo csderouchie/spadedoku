@@ -8,6 +8,7 @@ var hand_coords = _get_hand_coords()
 var base_board_coords : Array
 var board_coords : Array
 var board_card_coords = []
+signal game_won
 
 func _ready():
 	base_board_coords = _get_board_coords()
@@ -21,7 +22,7 @@ func _input(event: InputEvent) -> void:
 		process_select_release(tile_pos)
 		
 func process_select_click(tile_pos : Vector2i): # Card selection and movement logic
-	print(tile_pos) # debug 
+	#print(tile_pos) # debug 
 	highlight.clear()
 	if tile_pos in hand_coords or tile_pos in board_coords:
 		if tile_pos not in board_card_coords:
@@ -55,8 +56,11 @@ func place_card(tile_pos : Vector2):
 		# Move selected tile
 		card_layer.erase_cell(selection)
 		card_layer.set_cell(tile_pos, selected_tile, Vector2i.ZERO, alt_tile)
-		update_indicator_tiles()
 		selection = Vector2i(-10,-10)
+				
+		#Maintain game state
+		update_indicator_tiles()
+		check_game_won()
 
 func get_level_data(level_num : int):
 	return Level.levels[str(level_num)]
@@ -132,10 +136,17 @@ func sum_watched_tiles(watched_tiles : Array) -> int:
 	for tile in watched_tiles:
 		var card = get_card_at(tile)
 		if card != null:
-			print("card at: ", tile)
 			sum += card.value
 	return sum
-	
+
+func check_game_won():
+	await get_tree().create_timer(0.01).timeout
+	for indicator in indicator_layer.get_children():
+		if indicator.display_value == 21:
+			continue
+		else:
+			return
+	game_won.emit()
 
 # Active game tiles array builders
 func _get_hand_coords() -> Array:
