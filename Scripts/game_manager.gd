@@ -65,6 +65,7 @@ func get_level_data(level_num : int):
 	return Level.levels[str(level_num)]
 
 func load_level(level_num : int): # Load full level from its number
+	reset_board()
 	var level = get_level_data(level_num)
 	board_coords = []
 	for i in len(base_board_coords): # Load board
@@ -147,7 +148,6 @@ func check_game_won():
 
 func resolve_game_won():
 	game_won.emit()
-	reset_board()
 
 func reset_board():
 	card_layer.clear()
