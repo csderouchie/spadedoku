@@ -1,0 +1,386 @@
+[gd_scene format=3 uid="uid://cl1dyb21jeapt"]
+
+[ext_resource type="Script" uid="uid://72hwbqgnnn7d" path="res://Scripts/Menus/select_level_button.gd" id="1_lnbxk"]
+
+[sub_resource type="GDScript" id="GDScript_7pcsv"]
+script/source = "extends Control
+@onready var buttons_vbox: VBoxContainer = $ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox
+signal level_selected
+var page : int
+
+func set_buttons():
+	page = 1
+	var containers = buttons_vbox.get_children()
+	var num := 0
+	for container in containers:
+		var buttons = container.get_children()
+		for button in buttons:
+			button.num = num
+			button.set_button_text()
+			num += 1
+
+func _on__level_selected(num) -> void:
+	level_selected.emit(num)
+
+
+
+func _on_previous_pressed() -> void:
+	if page > 1:
+		var containers = buttons_vbox.get_children()
+		for container in containers:
+			var buttons = container.get_children()
+			for button in buttons:
+				button.num -= 25
+				button.set_button_text()
+		page -= 1
+				
+
+
+func _on_next_pressed() -> void:
+	if page < 4:
+		var containers = buttons_vbox.get_children()
+		for container in containers:
+			var buttons = container.get_children()
+			for button in buttons:
+				button.num += 25
+				button.set_button_text()
+		page += 1
+"
+
+[sub_resource type="Theme" id="Theme_qolup"]
+
+[node name="SelectLevel" type="Control" unique_id=1758692692]
+custom_minimum_size = Vector2(720, 1280)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -640.0
+offset_right = 360.0
+offset_bottom = 640.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_7pcsv")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1061897268]
+custom_minimum_size = Vector2(720, 1280)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=2056260909]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_right = 200.0
+offset_bottom = 320.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/VBoxContainer" unique_id=272666060]
+custom_minimum_size = Vector2(820, 1280)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/VBoxContainer/MarginContainer" unique_id=1713752727]
+custom_minimum_size = Vector2(410, 640)
+custom_maximum_size = Vector2(410, 350)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/MarginContainer/MarginContainer" unique_id=804619421]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "Select Level"
+horizontal_alignment = 1
+
+[node name="Buttons" type="Control" parent="ColorRect/VBoxContainer/MarginContainer" unique_id=751226813]
+custom_maximum_size = Vector2(-1, 800)
+layout_mode = 2
+
+[node name="ButtonsVbox" type="VBoxContainer" parent="ColorRect/VBoxContainer/MarginContainer/Buttons" unique_id=2093669852]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -258.0
+offset_top = -516.0
+offset_right = 258.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox" unique_id=170200869]
+layout_mode = 2
+
+[node name="0" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer" unique_id=349080822]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="1" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer" unique_id=1888940073]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="2" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer" unique_id=1461854058]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="3" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer" unique_id=57411842]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="4" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer" unique_id=208304364]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox" unique_id=1758257895]
+layout_mode = 2
+
+[node name="0" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer2" unique_id=463596831]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="1" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer2" unique_id=1266894880]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="2" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer2" unique_id=1223473972]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="3" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer2" unique_id=226766343]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="4" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer2" unique_id=1835324867]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox" unique_id=1310621042]
+layout_mode = 2
+
+[node name="0" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer3" unique_id=294262345]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="1" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer3" unique_id=547439781]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="2" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer3" unique_id=1701412610]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="3" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer3" unique_id=1287274526]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="4" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer3" unique_id=1140259346]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox" unique_id=1714291992]
+layout_mode = 2
+
+[node name="0" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer4" unique_id=2042921817]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="1" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer4" unique_id=1041154322]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="2" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer4" unique_id=1089409885]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="3" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer4" unique_id=1873366671]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="4" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer4" unique_id=1754982455]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox" unique_id=19765801]
+layout_mode = 2
+
+[node name="0" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer5" unique_id=891373243]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="1" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer5" unique_id=2094390914]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="2" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer5" unique_id=1749883852]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="3" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer5" unique_id=889866288]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="4" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer5" unique_id=1628264347]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_qolup")
+theme_override_font_sizes/font_size = 48
+text = "0"
+script = ExtResource("1_lnbxk")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer/MarginContainer" unique_id=988407896]
+custom_minimum_size = Vector2(720, 400)
+custom_maximum_size = Vector2(720, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Previous" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/HBoxContainer" unique_id=240565300]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Previous"
+
+[node name="Next" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/HBoxContainer" unique_id=578915254]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Next"
+
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer/0" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer/1" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer/2" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer/3" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer/4" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer2/0" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer2/1" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer2/2" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer2/3" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer2/4" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer3/0" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer3/1" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer3/2" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer3/3" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer3/4" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer4/0" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer4/1" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer4/2" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer4/3" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer4/4" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer5/0" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer5/1" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer5/2" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer5/3" to="." method="_on__level_selected"]
+[connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer5/4" to="." method="_on__level_selected"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/MarginContainer/HBoxContainer/Previous" to="." method="_on_previous_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/MarginContainer/HBoxContainer/Next" to="." method="_on_next_pressed"]

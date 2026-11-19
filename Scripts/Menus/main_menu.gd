@@ -17,9 +17,9 @@ signal play_pressed
 func _on_play_pressed() -> void:
 	play_pressed.emit()
 
-
+signal select_level_pressed
 func _on_select_level_pressed() -> void:
-	pass # Replace with function body.
+	select_level_pressed.emit()
 
 
 func _on_settings_pressed() -> void:

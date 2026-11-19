@@ -4,7 +4,7 @@
 
 [sub_resource type="Theme" id="Theme_qolup"]
 
-[node name="GameSummary" type="Control" unique_id=1758692692]
+[node name="MainMenu" type="Control" unique_id=1758692692]
 custom_minimum_size = Vector2(720, 1280)
 layout_mode = 3
 anchors_preset = 15
