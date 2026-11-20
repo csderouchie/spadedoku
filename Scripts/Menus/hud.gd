@@ -45,3 +45,6 @@ func hide_timer():
 	
 func show_timer():
 	timer_label.visible = true
+	
+func get_time():
+	return format_timer(timer_minutes, timer_seconds)

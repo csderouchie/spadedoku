@@ -9,9 +9,12 @@ var next_level := 0
 var current_level = null
 
 func _on_game_manager_game_won() -> void:
-	main_menu.visible = true
+	game_summary.visible = true
 	next_level += 1
 	main_menu.set_level_label(next_level)
+	game_summary.set_labels(current_level, hud.get_time())
+	current_level = null
+	hud.stop_timer()
 
 func _on_main_menu_play_pressed() -> void:
 	main_menu.visible = false
@@ -35,7 +38,6 @@ func load_level(num : int):
 	game_manager.load_level(num)
 	hud.start_timer()
 	hud.set_level_label(num)
-	
 
 func _on_hud_restart() -> void:
 	game_manager.load_level(current_level)
@@ -47,7 +49,6 @@ func _on_hud_menu() -> void:
 func _on_main_menu_settings_pressed() -> void:
 	settings.visible = true;
 
-
 func _on_settings_settings_changed() -> void:
 	process_settings(settings.get_settings())
 	
@@ -56,4 +57,19 @@ func process_settings(settings : Dictionary):
 		hud.hide_timer()
 	else:
 		hud.show_timer()
-	
+
+func _on_select_level_menu() -> void:
+	select_level.visible = false
+	main_menu.visible = true
+
+func _on_game_summary_menu() -> void:
+	game_summary.visible = false
+	main_menu.visible = true
+
+func _on_game_summary_next_level() -> void:
+	load_level(next_level)
+	game_summary.visible = false
+
+func _on_game_summary_select_level() -> void:
+	game_summary.visible = false
+	select_level.visible = true

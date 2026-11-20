@@ -22,8 +22,6 @@ func set_buttons():
 func _on__level_selected(num) -> void:
 	level_selected.emit(num)
 
-
-
 func _on_previous_pressed() -> void:
 	if page > 1:
 		var containers = buttons_vbox.get_children()
@@ -35,7 +33,6 @@ func _on_previous_pressed() -> void:
 		page -= 1
 				
 
-
 func _on_next_pressed() -> void:
 	if page < 4:
 		var containers = buttons_vbox.get_children()
@@ -45,6 +42,10 @@ func _on_next_pressed() -> void:
 				button.num += 25
 				button.set_button_text()
 		page += 1
+
+signal menu
+func _on_menu_pressed() -> void:
+	menu.emit()
 "
 
 [sub_resource type="Theme" id="Theme_qolup"]
@@ -349,7 +350,15 @@ size_flags_vertical = 0
 theme_override_font_sizes/font_size = 32
 text = "Previous"
 
-[node name="Next" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/HBoxContainer" unique_id=578915254]
+[node name="Menu" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/HBoxContainer" unique_id=578915254]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Menu"
+
+[node name="Next" type="Button" parent="ColorRect/VBoxContainer/MarginContainer/HBoxContainer" unique_id=29476276]
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -383,4 +392,5 @@ text = "Next"
 [connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer5/3" to="." method="_on__level_selected"]
 [connection signal="level_selected" from="ColorRect/VBoxContainer/MarginContainer/Buttons/ButtonsVbox/HBoxContainer5/4" to="." method="_on__level_selected"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/MarginContainer/HBoxContainer/Previous" to="." method="_on_previous_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/MarginContainer/HBoxContainer/Menu" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="ColorRect/VBoxContainer/MarginContainer/HBoxContainer/Next" to="." method="_on_next_pressed"]
