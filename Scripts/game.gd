@@ -52,8 +52,8 @@ func _on_main_menu_settings_pressed() -> void:
 func _on_settings_settings_changed() -> void:
 	process_settings(settings.get_settings())
 	
-func process_settings(settings : Dictionary):
-	if settings["show_timer"] == false:
+func process_settings(settings_dict : Dictionary):
+	if settings_dict["show_timer"] == false:
 		hud.hide_timer()
 	else:
 		hud.show_timer()

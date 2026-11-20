@@ -68,26 +68,34 @@ func load_level(level_num : int): # Load full level from its number
 	reset_board()
 	var level = get_level_data(level_num)
 	board_coords = []
-	for i in len(base_board_coords): # Load board
-		if level["board_tiles"][i] == 1:
-			background.set_cell(base_board_coords[i], 1, Vector2i.ZERO, 1)
-			board_coords.append(base_board_coords[i])
-		else:
-			background.set_cell(base_board_coords[i], 0, Vector2i.ZERO, 1)
-	var alt_tile : int
-	for i in range(len(level["hand"])): # Load hand
-		alt_tile = get_alt_tile(level["hand"][i])
-		card_layer.set_cell(hand_coords[i], level["hand"][i], Vector2i.ZERO, alt_tile)
-	for i in range(len(level["board_cards"])): # Load board cards
-		var board_card = level["board_cards"][i]
-		var coords := Vector2i(board_card["x"], board_card["y"])
-		board_card_coords.append(coords)
-		alt_tile = get_alt_tile(board_card["card"])
-		card_layer.set_cell(coords, board_card["card"], Vector2i.ZERO, alt_tile)
+	load_board(level["board_tiles"])
+	load_hand(level["hand"])
+	load_board_cards(level["board_cards"])
 	card_layer.update_internals()
 	set_gray_tiles()
 	place_indicator_tiles()
 	update_indicator_tiles()
+
+func load_board(board_tiles : Array):
+	for i in len(base_board_coords):
+		if board_tiles[i] == 1:
+			background.set_cell(base_board_coords[i], 1, Vector2i.ZERO, 1)
+			board_coords.append(base_board_coords[i])
+		else:
+			background.set_cell(base_board_coords[i], 0, Vector2i.ZERO, 1)
+
+func load_hand(hand : Array):
+	for i in range(len(hand)):
+		var alt_tile := get_alt_tile(hand[i])
+		card_layer.set_cell(hand_coords[i], hand[i], Vector2i.ZERO, alt_tile)
+
+func load_board_cards(board_cards : Array):
+	for i in range(len(board_cards)): # Load board cards
+		var board_card = board_cards[i]
+		var coords := Vector2i(board_card["x"], board_card["y"])
+		board_card_coords.append(coords)
+		var alt_tile := get_alt_tile(board_card["card"])
+		card_layer.set_cell(coords, board_card["card"], Vector2i.ZERO, alt_tile)
 
 func get_alt_tile(num : int) -> int: # Work around for alt tile bug
 		if num == 2:
