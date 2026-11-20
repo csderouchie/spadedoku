@@ -4,6 +4,7 @@ extends Node2D
 @onready var game_manager: Node2D = $GameManager
 @onready var select_level: Control = $Menus/SelectLevel
 @onready var hud: Control = $Menus/Hud
+@onready var settings: Control = $Menus/Settings
 var next_level := 0
 var current_level = null
 
@@ -34,6 +35,7 @@ func load_level(num : int):
 	game_manager.load_level(num)
 	hud.start_timer()
 	hud.set_level_label(num)
+	
 
 func _on_hud_restart() -> void:
 	game_manager.load_level(current_level)
@@ -41,3 +43,17 @@ func _on_hud_restart() -> void:
 func _on_hud_menu() -> void:
 	main_menu.visible = true
 	hud.stop_timer()
+
+func _on_main_menu_settings_pressed() -> void:
+	settings.visible = true;
+
+
+func _on_settings_settings_changed() -> void:
+	process_settings(settings.get_settings())
+	
+func process_settings(settings : Dictionary):
+	if settings["show_timer"] == false:
+		hud.hide_timer()
+	else:
+		hud.show_timer()
+	

@@ -39,3 +39,9 @@ func reset_timers():
 	timer_seconds = 0
 	timer_minutes = 0
 	timer_label.text = format_timer(timer_minutes, timer_seconds)
+	
+func hide_timer():
+	timer_label.visible = false
+	
+func show_timer():
+	timer_label.visible = true

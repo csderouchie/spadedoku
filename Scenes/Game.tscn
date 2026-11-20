@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bwrakdffg7twp" path="res://Scenes/Menus/main_menu.tscn" id="19_8r6kd"]
 [ext_resource type="PackedScene" uid="uid://cl1dyb21jeapt" path="res://Scenes/Menus/select_level.tscn" id="20_tfod6"]
 [ext_resource type="PackedScene" uid="uid://dpi8fo4bt5aoy" path="res://Scenes/Menus/HUD.tscn" id="21_rajel"]
+[ext_resource type="PackedScene" uid="uid://bx02xrg3qg78d" path="res://Scenes/Menus/settings.tscn" id="22_vvhu1"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_kldst"]
 resource_name = "white"
@@ -171,9 +172,17 @@ offset_top = 0.0
 offset_right = 1080.0
 offset_bottom = 1920.0
 
+[node name="Settings" parent="Menus" unique_id=1612364081 instance=ExtResource("22_vvhu1")]
+visible = false
+layout_mode = 1
+offset_right = 720.0
+offset_bottom = 1280.0
+
 [connection signal="game_won" from="GameManager" to="." method="_on_game_manager_game_won"]
 [connection signal="menu" from="Menus/Hud" to="." method="_on_hud_menu"]
 [connection signal="restart" from="Menus/Hud" to="." method="_on_hud_restart"]
 [connection signal="play_pressed" from="Menus/MainMenu" to="." method="_on_main_menu_play_pressed"]
 [connection signal="select_level_pressed" from="Menus/MainMenu" to="." method="_on_main_menu_select_level_pressed"]
+[connection signal="settings_pressed" from="Menus/MainMenu" to="." method="_on_main_menu_settings_pressed"]
 [connection signal="level_selected" from="Menus/SelectLevel" to="." method="_on_select_level_level_selected"]
+[connection signal="settings_changed" from="Menus/Settings" to="." method="_on_settings_settings_changed"]

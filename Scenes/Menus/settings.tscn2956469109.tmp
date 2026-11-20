@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://bx02xrg3qg78d"]
+
+[ext_resource type="Script" uid="uid://63wod80u0wfu" path="res://Scripts/Menus/settings.gd" id="1_mfqmm"]
+
+[sub_resource type="Theme" id="Theme_mfqmm"]
+
+[node name="Settings" type="Control" unique_id=1758692692]
+custom_minimum_size = Vector2(720, 1280)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mfqmm")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1061897268]
+custom_minimum_size = Vector2(720, 1280)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=2056260909]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_right = 200.0
+offset_bottom = 320.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/VBoxContainer" unique_id=272666060]
+custom_minimum_size = Vector2(320, 100)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Settings" type="Label" parent="ColorRect/VBoxContainer/MarginContainer" unique_id=804619421]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="Hide timer" type="Button" parent="ColorRect/VBoxContainer" unique_id=1143003044]
+custom_minimum_size = Vector2(100, 75)
+layout_mode = 2
+theme = SubResource("Theme_mfqmm")
+theme_override_colors/icon_normal_color = Color(0, 1.353256, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Hide timer"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ColorRect" unique_id=974865392]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -75.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Back" type="Button" parent="ColorRect/VBoxContainer2" unique_id=1379110719]
+custom_minimum_size = Vector2(100, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/Hide timer" to="." method="_on_hide_timer_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer2/Back" to="." method="_on_back_pressed"]
